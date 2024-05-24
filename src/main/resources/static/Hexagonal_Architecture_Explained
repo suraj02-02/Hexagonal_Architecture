@@ -1,0 +1,36 @@
+Mostly the apps follow layered architecture , in which we have different layers responsible for managing the application in a decoupled manner.
+
++---------------------+   +---------------------+   +---------------------+   +---------------------+
+|   Presentation Layer|   | Application Layer   |   |    Data Layer       |   | Infrastructure Layer|
+|      (UI/UX)        |-->|  (Business Logic)   |-->| (Database/Storage)  |-->|   (Server/Network)  |
++---------------------+   +---------------------+   +---------------------+   +---------------------+
+
+Although layered arch works well for small apps but it gets difficult as the size of application increases.
+The coupling b/w different component is increased making the app less modular and it becomes difficult to add new changes or upgrade / change in any of the
+layer (database layer / UI layer).
+
+Inorder to solve above issue (Other issues as well) Hexagonal Arch was introduced to provide high modularity and separation between different components of the app.
+
+Project Structure is explained below :
+
+-- adapters (Contains component responsible for interaction between [external factors <-> Domain layer])
+    |
+    ----- primary -> These adapter are to connect the driver side (UI , APIs) to domain.
+    ----- secondary -> These adpater are to connect the driven side (Database , queues , filesystem) to domain
+    ----- requestdto
+    ----- responsedto
+
+-- domain
+    |
+    ----- entities -> These contains business entities
+    ----- usecase -> Core business logic is contained in this
+-- port
+    |
+    ---- primary -> It provides interface for primary adapters
+    ---- secondary -> It provides interface for secondary adapters
+
+
+
+
+
+
